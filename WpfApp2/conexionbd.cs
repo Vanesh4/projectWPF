@@ -1,0 +1,68 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+
+
+
+namespace WpfApp2
+{
+    internal class conexionbd
+    {
+        private string conexion = "Data Source=192.168.10.8,1433; Initial Catalog=app;Persist Security Info=True; User Id=Corpen01SQL; Password=Prueba*123";
+        public DataSet crearConexion(String consulta)
+        {
+            DataSet ds = new DataSet();
+            SqlConnection con1 = new SqlConnection(conexion);
+
+            try
+            {
+                con1.Open(); 
+                SqlCommand cmd = new SqlCommand(consulta, con1);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.SelectCommand.CommandTimeout = 0;
+                da.Fill(ds);                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al abrir la conexión o al realizar operaciones: " + ex.Message);
+            }
+            finally
+            {
+                con1.Close();
+            }
+
+            return ds;
+        }
+
+        public int conexionAltTabla(String consulta)
+        {           
+            SqlConnection con1 = new SqlConnection(conexion);
+            int filasAfectadas = 0;
+            try
+            {
+                con1.Open(); 
+                SqlCommand cmd = new SqlCommand(consulta, con1);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.SelectCommand.CommandTimeout = 0;
+                
+                filasAfectadas = cmd.ExecuteNonQuery();
+                //string mensaje = "El valor del número es: " + filasAfectadas;
+                //MessageBox.Show(mensaje);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al abrir la conexión o al realizar operaciones: " + ex.Message);
+            }
+            finally
+            {
+                con1.Close();
+            }
+            return filasAfectadas;
+        }
+    }
+}
