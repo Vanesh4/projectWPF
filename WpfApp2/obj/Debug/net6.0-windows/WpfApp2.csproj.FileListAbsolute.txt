@@ -26,5 +26,5 @@ C:\Users\Gordillov\Documents\c\WpfApp2\WpfApp2\obj\Debug\net6.0-windows\refint\W
 C:\Users\Gordillov\Documents\c\WpfApp2\WpfApp2\obj\Debug\net6.0-windows\WpfApp2.pdb
 C:\Users\Gordillov\Documents\c\WpfApp2\WpfApp2\obj\Debug\net6.0-windows\WpfApp2.genruntimeconfig.cache
 C:\Users\Gordillov\Documents\c\WpfApp2\WpfApp2\obj\Debug\net6.0-windows\ref\WpfApp2.dll
-C:\Users\Gordillov\Documents\c\WpfApp2\WpfApp2\obj\Debug\net6.0-windows\Vistas\vistaTerceros.g.cs
-C:\Users\Gordillov\Documents\c\WpfApp2\WpfApp2\obj\Debug\net6.0-windows\Vistas\vistaTerceros.baml
+C:\Users\Gordillov\Documents\c\WpfApp2\WpfApp2\obj\Debug\net6.0-windows\Views\vistaTerceros.g.cs
+C:\Users\Gordillov\Documents\c\WpfApp2\WpfApp2\obj\Debug\net6.0-windows\Views\vistaTerceros.baml

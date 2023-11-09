@@ -16,11 +16,6 @@ namespace WpfApp2.Models
             string consulta = "select * from tbl_terceros";
             return con.crearConexion(consulta);
         }
-        public DataSet getRetiros()
-        {
-            conexionbd con = new conexionbd();
-            string consulta = "select * from tbl_retiros";
-            return con.crearConexion(consulta);
-        }
+        
     }
 }
