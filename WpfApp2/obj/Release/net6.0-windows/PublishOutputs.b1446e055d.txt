@@ -1,0 +1,11 @@
+C:\Users\Gordillov\Documents\c\WpfApp2\WpfApp2\bin\Release\net6.0-windows\publish\WpfApp2.exe
+C:\Users\Gordillov\Documents\c\WpfApp2\WpfApp2\bin\Release\net6.0-windows\publish\WpfApp2.dll
+C:\Users\Gordillov\Documents\c\WpfApp2\WpfApp2\bin\Release\net6.0-windows\publish\WpfApp2.deps.json
+C:\Users\Gordillov\Documents\c\WpfApp2\WpfApp2\bin\Release\net6.0-windows\publish\WpfApp2.runtimeconfig.json
+C:\Users\Gordillov\Documents\c\WpfApp2\WpfApp2\bin\Release\net6.0-windows\publish\WpfApp2.pdb
+C:\Users\Gordillov\Documents\c\WpfApp2\WpfApp2\bin\Release\net6.0-windows\publish\System.Data.SqlClient.dll
+C:\Users\Gordillov\Documents\c\WpfApp2\WpfApp2\bin\Release\net6.0-windows\publish\runtimes\win-arm64\native\sni.dll
+C:\Users\Gordillov\Documents\c\WpfApp2\WpfApp2\bin\Release\net6.0-windows\publish\runtimes\win-x64\native\sni.dll
+C:\Users\Gordillov\Documents\c\WpfApp2\WpfApp2\bin\Release\net6.0-windows\publish\runtimes\win-x86\native\sni.dll
+C:\Users\Gordillov\Documents\c\WpfApp2\WpfApp2\bin\Release\net6.0-windows\publish\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Gordillov\Documents\c\WpfApp2\WpfApp2\bin\Release\net6.0-windows\publish\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
