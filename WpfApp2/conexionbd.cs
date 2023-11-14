@@ -18,7 +18,7 @@ namespace WpfApp2
         private string conexion = "server=192.168.10.13;port=3306;user=Gordillov;password=Hola2020*;database=app";
         public DataSet crearConexion(String consulta)
         {
-            MessageBox.Show("hizo la CONSULTAAAAAAA");
+            //MessageBox.Show("hizo la CONSULTAAAAAAA");
             DataSet ds = new DataSet();
             //SqlConnection con1 = new SqlConnection(conexion);
             MySqlConnection con1 = new MySqlConnection(conexion);
@@ -36,7 +36,7 @@ namespace WpfApp2
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al abrir la conexión o al realizar operaciones: " + ex.Message);
+                MessageBox.Show("Error: " + ex.Message);
             }
             finally
             {
@@ -47,14 +47,19 @@ namespace WpfApp2
         }
 
         public int conexionAltTabla(String consulta)
-        {           
-            SqlConnection con1 = new SqlConnection(conexion);
+        {
+            MySqlConnection con1 = new MySqlConnection(conexion);
+            //SqlConnection con1 = new SqlConnection(conexion);
             int filasAfectadas = 0;
             try
             {
                 con1.Open(); 
-                SqlCommand cmd = new SqlCommand(consulta, con1);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                //SqlCommand cmd = new SqlCommand(consulta, con1);
+                //SqlDataAdapter da = new SqlDataAdapter(cmd);
+                MySqlCommand cmd = new MySqlCommand(consulta, con1);
+
+                //SqlDataAdapter da = new SqlDataAdapter(cmd);
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                 da.SelectCommand.CommandTimeout = 0;
                 
                 filasAfectadas = cmd.ExecuteNonQuery();
@@ -63,7 +68,7 @@ namespace WpfApp2
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al abrir la conexión o al realizar operaciones: " + ex.Message);
+                //MessageBox.Show("Error: " + ex.Message);
             }
             finally
             {

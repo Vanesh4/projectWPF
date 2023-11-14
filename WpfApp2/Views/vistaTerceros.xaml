@@ -13,13 +13,13 @@
             </DataGrid>-->
             <!--<Button Content="Retiros" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100" Height="40" FontSize="18" Click="TraerData" />-->
 
+            
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="40" />
             </Grid.RowDefinitions>
-            
-            <DataGrid  x:Name="RetirosData" AutoGenerateColumns="True" Margin="20" Grid.Row="0"></DataGrid>
 
             <StackPanel Orientation="Horizontal" Grid.Row="1">
                 <Label Content="Cod Ter:" />
@@ -28,6 +28,10 @@
                 <Button Content="Enviar Datos" Margin="20,0,0,0" Width="200" FontSize="18" Click="EnviarData"/>
                 <Label Name="msjEnvioDatos" Content=""/>
             </StackPanel>
+
+            <DataGrid  x:Name="RetirosData" AutoGenerateColumns="True" Margin="20" Grid.Row="0"></DataGrid>
+
+            
 
         </Grid>
     </ScrollViewer>

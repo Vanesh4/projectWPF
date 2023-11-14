@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,14 +24,18 @@ namespace WpfApp2.Models
         public vistaTerceros()
         {
             InitializeComponent();
-            //inputFecha.DisplayDateEnd = DateTime.Today;
 
             //terceros dataTer = new terceros();
             //listaTerceros.ItemsSource = dataTer.getTerceros().Tables[0].DefaultView;
-
+           
             retiros dataTer = new retiros();
             
+            dataTer.anio2013();
+            dataTer.anio2014();
+            dataTer.anio2015();
+            dataTer.anio2016();
             RetirosData.ItemsSource = dataTer.getRetiros().Tables[0].DefaultView;
+            
         }
 
         private void EnviarData(object sender, RoutedEventArgs e)
@@ -43,13 +48,11 @@ namespace WpfApp2.Models
             else
             {
                 DateTime fechaCal = inputFecha.SelectedDate ?? DateTime.Today;                
-                int intCodTer = int.Parse(txtCodter.Text);
-                retiros objRet = new retiros(intCodTer, fechaCal);
+                int intCodTer = int.Parse(txtCodter.Text);                
+                retiros objRet = new retiros(intCodTer, fechaCal.ToString("yyyy-MM-dd"));
                 msjEnvioDatos.Content = objRet.postTblRetiros();
-            }
-
-            //retiros dataTer = new retiros();
-            //dataTer.postTblRetiros();
+                RetirosData.ItemsSource = objRet.getRetiros().Tables[0].DefaultView;
+            }        
         }
         
         //VALIDACION DE INPUT NUMERICO
