@@ -28,7 +28,18 @@ namespace WpfApp2.Models
             //terceros dataTer = new terceros();
             //listaTerceros.ItemsSource = dataTer.getTerceros().Tables[0].DefaultView;
            
-            retiros dataTer = new retiros();
+            retiros dataTer = new retiros();            
+            dataTer.anio2007();
+            dataTer.anio2008();
+            dataTer.anio2009();
+            dataTer.anio2010();
+            dataTer.anio2011();
+            dataTer.anio2012();
+            dataTer.anio2013();
+            dataTer.anio2014();
+            dataTer.anio2015();
+            dataTer.anio2016();
+
             RetirosData.ItemsSource = dataTer.getRetiros().Tables[0].DefaultView;
             
         }

@@ -24,7 +24,7 @@ namespace WpfApp2.Models
         public DataSet getRetiros()
         {
             conexionbd con = new conexionbd();
-            string consulta = "select * from tbl_retiros";
+            string consulta = "select * from BD$";
             return con.crearConexion(consulta);
         }
 
@@ -32,7 +32,7 @@ namespace WpfApp2.Models
         {
             
             conexionbd con = new conexionbd();
-            string peticion = "INSERT INTO tbl_retiros (COD_TER, FECHAPARA_CALCULO)" +
+            string peticion = "INSERT INTO BD$ (COD_TER, FECHAPARA_CALCULO)" +
                 $"VALUES ({COD_TER}, '{FECHAPARA_CALCULO}')";
             int res = con.conexionAltTabla(peticion);
             if (res >= 1)
@@ -58,15 +58,15 @@ namespace WpfApp2.Models
 
         private string agregarColumna(string anio)
         {
-            string consulta = $"ALTER TABLE tbl_retiros ADD liquidacion_{anio} BIGINT";
+            string consulta = $"ALTER TABLE BD$ ADD liquidacion_{anio} BIGINT";
             return consulta;
         }
         private (int anio, int mes, int dia) retAnioMesDia(int cod_ter)
         {
             conexionbd con = new conexionbd();
-            DataSet conAnio = con.crearConexion($"SELECT YEAR(FECHAPARA_CALCULO) as year FROM tbl_retiros WHERE COD_TER = {cod_ter}");
-            DataSet conMes = con.crearConexion($"SELECT MONTH(FECHAPARA_CALCULO) as mes FROM tbl_retiros WHERE COD_TER = {cod_ter}");
-            DataSet conDia = con.crearConexion($"SELECT DAY(FECHAPARA_CALCULO) as dia FROM tbl_retiros WHERE COD_TER = {cod_ter}");
+            DataSet conAnio = con.crearConexion($"SELECT YEAR(fecha_para_calculo) as year FROM BD$ WHERE COD_TER = {cod_ter}");
+            DataSet conMes = con.crearConexion($"SELECT MONTH(fecha_para_calculo) as mes FROM BD$ WHERE COD_TER = {cod_ter}");
+            DataSet conDia = con.crearConexion($"SELECT DAY(fecha_para_calculo) as dia FROM BD$ WHERE COD_TER = {cod_ter}");
 
             int anio = Convert.ToInt32(conAnio.Tables[0].Rows[0]["year"]);
             int mes = Convert.ToInt32(conMes.Tables[0].Rows[0]["mes"]);
@@ -80,10 +80,10 @@ namespace WpfApp2.Models
             conexionbd con = new conexionbd();            
             con.conexionAltTabla(agregarColumna("2006"));
 
-            DataSet res = con.crearConexion("SELECT COD_TER FROM tbl_retiros where liquidacion_2006 iS NULL;");
+            DataSet res = con.crearConexion("SELECT COD_TER FROM BD$ where liquidacion_2006 iS NULL;");
             foreach (DataRow i in res.Tables[0].Rows)
             {
-                int cod_ter = (int)i["COD_TER"];
+                int cod_ter = Convert.ToInt32(i["COD_TER"]);
                 var r = retAnioMesDia(cod_ter);              
 
                 double calculo = 0;
@@ -96,8 +96,8 @@ namespace WpfApp2.Models
 
                     calculo = (difAño * valorFijo) + ((difMes* valorFijo)/12) + (((difDia * valorFijo) /12)/30);                               
                 }
-                string updateCon = $"UPDATE tbl_retiros SET liquidacion_2006={calculo}  WHERE COD_TER = {cod_ter};";
-                int resptaaa = con.conexionAltTabla(updateCon);
+                string updateCon = $"UPDATE BD$ SET liquidacion_2006={calculo}  WHERE COD_TER = {cod_ter};";
+                con.conexionAltTabla(updateCon);
                 //string mensaje = "xd " + resptaaa;
                 //MessageBox.Show(mensaje);
             }
@@ -109,10 +109,10 @@ namespace WpfApp2.Models
             conexionbd con = new conexionbd();
             con.conexionAltTabla(agregarColumna("2007"));
 
-            DataSet res = con.crearConexion("SELECT COD_TER FROM tbl_retiros where liquidacion_2007 iS NULL;");
+            DataSet res = con.crearConexion("SELECT COD_TER FROM BD$ where liquidacion_2007 iS NULL;");
             foreach (DataRow i in res.Tables[0].Rows)
             {
-                int cod_ter = (int)i["COD_TER"];
+                int cod_ter = Convert.ToInt32(i["COD_TER"]);
 
                 var r = retAnioMesDia(cod_ter);
                 int valorFijo = 576000;
@@ -128,7 +128,7 @@ namespace WpfApp2.Models
 
                     calculo = ((difMes * valorFijo) / 12) + (((difDia * valorFijo) / 12) / 30);
                 }
-                string updateCon = $"UPDATE tbl_retiros SET liquidacion_2007={calculo}  WHERE COD_TER = {cod_ter};";
+                string updateCon = $"UPDATE BD$ SET liquidacion_2007={calculo}  WHERE COD_TER = {cod_ter};";
                 con.conexionAltTabla(updateCon);                
             }
         }
@@ -137,10 +137,10 @@ namespace WpfApp2.Models
             conexionbd con = new conexionbd();
             con.conexionAltTabla(agregarColumna("2008"));
 
-            DataSet res = con.crearConexion("SELECT COD_TER FROM tbl_retiros where liquidacion_2008 iS NULL;");
+            DataSet res = con.crearConexion("SELECT COD_TER FROM BD$ where liquidacion_2008 iS NULL;");
             foreach (DataRow i in res.Tables[0].Rows)
             {
-                int cod_ter = (int)i["COD_TER"];
+                int cod_ter = Convert.ToInt32(i["COD_TER"]);
 
                 var r = retAnioMesDia(cod_ter);
 
@@ -157,7 +157,7 @@ namespace WpfApp2.Models
 
                     calculo = ((difMes * valorFijo) / 12) + (((difDia * valorFijo) / 12) / 30);
                 }
-                string updateCon = $"UPDATE tbl_retiros SET liquidacion_2008={calculo}  WHERE COD_TER = {cod_ter};";
+                string updateCon = $"UPDATE BD$ SET liquidacion_2008={calculo}  WHERE COD_TER = {cod_ter};";
                 con.conexionAltTabla(updateCon);
             }
         }
@@ -166,10 +166,10 @@ namespace WpfApp2.Models
             conexionbd con = new conexionbd();
             con.conexionAltTabla(agregarColumna("2009"));
 
-            DataSet res = con.crearConexion("SELECT COD_TER FROM tbl_retiros where liquidacion_2009 iS NULL;");
+            DataSet res = con.crearConexion("SELECT COD_TER FROM BD$ where liquidacion_2009 iS NULL;");
             foreach (DataRow i in res.Tables[0].Rows)
             {
-                int cod_ter = (int)i["COD_TER"];
+                int cod_ter = Convert.ToInt32(i["COD_TER"]);
 
                 var r = retAnioMesDia(cod_ter);
 
@@ -185,7 +185,7 @@ namespace WpfApp2.Models
                     int difDia = 31 - r.dia;
                     calculo = ((difMes * valorFijo) / 12) + (((difDia * valorFijo) / 12) / 30);
                 }                
-                con.conexionAltTabla($"UPDATE tbl_retiros SET liquidacion_2009={calculo}  WHERE COD_TER = {cod_ter};");
+                con.conexionAltTabla($"UPDATE BD$ SET liquidacion_2009={calculo}  WHERE COD_TER = {cod_ter};");
             }
         }
         public void anio2010()
@@ -193,10 +193,10 @@ namespace WpfApp2.Models
             conexionbd con = new conexionbd();
             con.conexionAltTabla(agregarColumna("2010"));
 
-            DataSet res = con.crearConexion("SELECT COD_TER FROM tbl_retiros where liquidacion_2010 iS NULL;");
+            DataSet res = con.crearConexion("SELECT COD_TER FROM BD$ where liquidacion_2010 iS NULL;");
             foreach (DataRow i in res.Tables[0].Rows)
             {
-                int cod_ter = (int)i["COD_TER"];
+                int cod_ter = Convert.ToInt32(i["COD_TER"]);
 
                 var r = retAnioMesDia(cod_ter);
 
@@ -212,7 +212,7 @@ namespace WpfApp2.Models
                     int difDia = 31 - r.dia;
                     calculo = ((difMes * valorFijo) / 12) + (((difDia * valorFijo) / 12) / 30);
                 }
-                con.conexionAltTabla($"UPDATE tbl_retiros SET liquidacion_2010={calculo}  WHERE COD_TER = {cod_ter};");
+                con.conexionAltTabla($"UPDATE BD$ SET liquidacion_2010={calculo}  WHERE COD_TER = {cod_ter};");
             }
         }
         public void anio2011()
@@ -220,10 +220,10 @@ namespace WpfApp2.Models
             conexionbd con = new conexionbd();
             con.conexionAltTabla(agregarColumna("2011"));
 
-            DataSet res = con.crearConexion("SELECT COD_TER FROM tbl_retiros where liquidacion_2011 iS NULL;");
+            DataSet res = con.crearConexion("SELECT COD_TER FROM BD$ where liquidacion_2011 iS NULL;");
             foreach (DataRow i in res.Tables[0].Rows)
             {
-                int cod_ter = (int)i["COD_TER"];
+                int cod_ter = Convert.ToInt32(i["COD_TER"]);
 
                 var r = retAnioMesDia(cod_ter);
 
@@ -239,7 +239,7 @@ namespace WpfApp2.Models
                     int difDia = 31 - r.dia;
                     calculo = ((difMes * valorFijo) / 12) + (((difDia * valorFijo) / 12) / 30);
                 }
-                con.conexionAltTabla($"UPDATE tbl_retiros SET liquidacion_2011={calculo}  WHERE COD_TER = {cod_ter};");
+                con.conexionAltTabla($"UPDATE BD$ SET liquidacion_2011={calculo}  WHERE COD_TER = {cod_ter};");
             }
         }
         public void anio2012()
@@ -247,10 +247,10 @@ namespace WpfApp2.Models
             conexionbd con = new conexionbd();
             con.conexionAltTabla(agregarColumna("2012"));
 
-            DataSet res = con.crearConexion("SELECT COD_TER FROM tbl_retiros where liquidacion_2012 iS NULL;");
+            DataSet res = con.crearConexion("SELECT COD_TER FROM BD$ where liquidacion_2012 iS NULL;");
             foreach (DataRow i in res.Tables[0].Rows)
             {
-                int cod_ter = (int)i["COD_TER"];
+                int cod_ter = Convert.ToInt32(i["COD_TER"]);
 
                 var r = retAnioMesDia(cod_ter);
 
@@ -266,7 +266,7 @@ namespace WpfApp2.Models
                     int difDia = 31 - r.dia;
                     calculo = ((difMes * valorFijo) / 12) + (((difDia * valorFijo) / 12) / 30);
                 }
-                con.conexionAltTabla($"UPDATE tbl_retiros SET liquidacion_2012={calculo}  WHERE COD_TER = {cod_ter};");
+                con.conexionAltTabla($"UPDATE BD$ SET liquidacion_2012={calculo}  WHERE COD_TER = {cod_ter};");
             }
         }
         public void anio2013()
@@ -274,10 +274,10 @@ namespace WpfApp2.Models
             conexionbd con = new conexionbd();
             con.conexionAltTabla(agregarColumna("2013"));
 
-            DataSet res = con.crearConexion("SELECT COD_TER FROM tbl_retiros where liquidacion_2013 iS NULL;");
+            DataSet res = con.crearConexion("SELECT COD_TER FROM BD$ where liquidacion_2013 iS NULL;");
             foreach (DataRow i in res.Tables[0].Rows)
             {
-                int cod_ter = (int)i["COD_TER"];
+                int cod_ter = Convert.ToInt32(i["COD_TER"]);
 
                 var r = retAnioMesDia(cod_ter);
 
@@ -293,7 +293,7 @@ namespace WpfApp2.Models
                     int difDia = 31 - r.dia;
                     calculo = ((difMes * valorFijo) / 12) + (((difDia * valorFijo) / 12) / 30);
                 }
-                con.conexionAltTabla($"UPDATE tbl_retiros SET liquidacion_2013={calculo}  WHERE COD_TER = {cod_ter};");
+                con.conexionAltTabla($"UPDATE BD$ SET liquidacion_2013={calculo}  WHERE COD_TER = {cod_ter};");
             }
         }
         public void anio2014()
@@ -301,10 +301,10 @@ namespace WpfApp2.Models
             conexionbd con = new conexionbd();
             con.conexionAltTabla(agregarColumna("2014"));
 
-            DataSet res = con.crearConexion("SELECT COD_TER FROM tbl_retiros where liquidacion_2014 iS NULL;");
+            DataSet res = con.crearConexion("SELECT COD_TER FROM BD$ where liquidacion_2014 iS NULL;");
             foreach (DataRow i in res.Tables[0].Rows)
             {
-                int cod_ter = (int)i["COD_TER"];
+                int cod_ter = Convert.ToInt32(i["COD_TER"]);
 
                 var r = retAnioMesDia(cod_ter);
 
@@ -320,7 +320,7 @@ namespace WpfApp2.Models
                     int difDia = 31 - r.dia;
                     calculo = ((difMes * valorFijo) / 12) + (((difDia * valorFijo) / 12) / 30);
                 }
-                con.conexionAltTabla($"UPDATE tbl_retiros SET liquidacion_2014={calculo}  WHERE COD_TER = {cod_ter};");
+                con.conexionAltTabla($"UPDATE BD$ SET liquidacion_2014={calculo}  WHERE COD_TER = {cod_ter};");
             }
         }
         public void anio2015()
@@ -328,10 +328,10 @@ namespace WpfApp2.Models
             conexionbd con = new conexionbd();
             con.conexionAltTabla(agregarColumna("2015"));
 
-            DataSet res = con.crearConexion("SELECT COD_TER FROM tbl_retiros where liquidacion_2015 iS NULL;");
+            DataSet res = con.crearConexion("SELECT COD_TER FROM BD$ where liquidacion_2015 iS NULL;");
             foreach (DataRow i in res.Tables[0].Rows)
             {
-                int cod_ter = (int)i["COD_TER"];
+                int cod_ter = Convert.ToInt32(i["COD_TER"]);
 
                 var r = retAnioMesDia(cod_ter);
 
@@ -347,7 +347,7 @@ namespace WpfApp2.Models
                     int difDia = 31 - r.dia;
                     calculo = ((difMes * valorFijo) / 12) + (((difDia * valorFijo) / 12) / 30);
                 }
-                con.conexionAltTabla($"UPDATE tbl_retiros SET liquidacion_2015={calculo}  WHERE COD_TER = {cod_ter};");
+                con.conexionAltTabla($"UPDATE BD$ SET liquidacion_2015={calculo}  WHERE COD_TER = {cod_ter};");
             }
         }
         public void anio2016()
@@ -355,10 +355,10 @@ namespace WpfApp2.Models
             conexionbd con = new conexionbd();
             con.conexionAltTabla(agregarColumna("2016"));
 
-            DataSet res = con.crearConexion("SELECT COD_TER FROM tbl_retiros where liquidacion_2016 iS NULL;");
+            DataSet res = con.crearConexion("SELECT COD_TER FROM BD$ where liquidacion_2016 iS NULL;");
             foreach (DataRow i in res.Tables[0].Rows)
             {
-                int cod_ter = (int)i["COD_TER"];
+                int cod_ter = Convert.ToInt32(i["COD_TER"]);    
 
                 var r = retAnioMesDia(cod_ter);
 
@@ -374,7 +374,7 @@ namespace WpfApp2.Models
                     int difDia = 31 - r.dia;
                     calculo = ((difMes * valorFijo) / 12) + (((difDia * valorFijo) / 12) / 30);
                 }
-                con.conexionAltTabla($"UPDATE tbl_retiros SET liquidacion_2016={calculo}  WHERE COD_TER = {cod_ter};");
+                con.conexionAltTabla($"UPDATE BD$ SET liquidacion_2016={calculo}  WHERE COD_TER = {cod_ter};");
             }
         }
     }
