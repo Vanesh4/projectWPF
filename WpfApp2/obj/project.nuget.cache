@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "z+7I3ITOR5yzOiSll4GdWHAUW4PedGAKgoUtm8kGof8oaKDYubo7YmE22JciWFnKcsjLuXjC+mzY7NwTpLw8Sg==",
+  "dgSpecHash": "m0VWirMqWV8CMZI6kLltg8eV9oEiSoDLioQoiBy42eq48XrEOmBsZjiXAzfZ4kGmjulWuWc9WrtzZkrFnnlcIA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Gordillov\\Documents\\c\\WpfApp2\\WpfApp2\\WpfApp2.csproj",
   "expectedPackageFiles": [
@@ -18,6 +18,10 @@
     "C:\\Users\\Gordillov\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\Gordillov\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\Gordillov\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\Gordillov\\.nuget\\packages\\syncfusion.data.wpf\\23.2.5\\syncfusion.data.wpf.23.2.5.nupkg.sha512",
+    "C:\\Users\\Gordillov\\.nuget\\packages\\syncfusion.licensing\\23.2.5\\syncfusion.licensing.23.2.5.nupkg.sha512",
+    "C:\\Users\\Gordillov\\.nuget\\packages\\syncfusion.sfgrid.wpf\\23.2.5\\syncfusion.sfgrid.wpf.23.2.5.nupkg.sha512",
+    "C:\\Users\\Gordillov\\.nuget\\packages\\syncfusion.shared.wpf\\23.2.5\\syncfusion.shared.wpf.23.2.5.nupkg.sha512",
     "C:\\Users\\Gordillov\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\Gordillov\\.nuget\\packages\\system.configuration.configurationmanager\\4.4.1\\system.configuration.configurationmanager.4.4.1.nupkg.sha512",
     "C:\\Users\\Gordillov\\.nuget\\packages\\system.data.sqlclient\\4.8.5\\system.data.sqlclient.4.8.5.nupkg.sha512",

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,77 +25,37 @@ namespace WpfApp2
         public MainWindow()
         {
             InitializeComponent();
-            data.Visibility = Visibility.Collapsed;
-            dataFiltrada.Visibility = Visibility.Collapsed;
-            msjEnvioDatos.Content = " ";
-        }
-        private void href(object sender, RoutedEventArgs e)
-        {
-            vistaTerceros segundaVentana = new vistaTerceros();
-            this.Close();
-            segundaVentana.Show();
-        }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Puestos dataPuestos = new Puestos();
-            data.Visibility = Visibility.Visible;
-            data.ItemsSource = dataPuestos.getPuestos().Tables[0].DefaultView;            
+            //terceros dataTer = new terceros();
+            //listaTerceros.ItemsSource = dataTer.getTerceros().Tables[0].DefaultView;
+
+            retiros dataTer = new retiros();
+
+            dataTer.anio2020();
+            dataTer.anio2021();
+            dataTer.anio2022();
+            RetirosData.ItemsSource = dataTer.getRetiros().Tables[0].DefaultView;
+
+            dataPager.Source = (System.Collections.IEnumerable)RetirosData.ItemsSource;
         }
 
-        private void filtrar(object sender, RoutedEventArgs e)
+        private void EnviarData(object sender, RoutedEventArgs e)
         {
-            Puestos dataPuestos = new Puestos();
-            string textoIngresado = CuadroDeTexto.Text;
-            //MessageBox.Show(dataPuestos.fitrarCargo(cargo);
-            
-            if (dataPuestos.fitrarCargo(textoIngresado).Tables.Count == 0 || dataPuestos.fitrarCargo(textoIngresado).Tables[0].Rows.Count == 0)
-            {
-                dataFiltrada.Visibility = Visibility.Collapsed;
-                msjError.Content = "No se encontraron resultados";
-            }
-            else
-            {
-                dataFiltrada.Visibility = Visibility.Visible;     
-                dataFiltrada.ItemsSource = dataPuestos.fitrarCargo(textoIngresado).Tables[0].DefaultView;
-            }            
-        }
 
-        //validar datos:
-        private bool validarRegistros()
-        {
-            if (txtCargo.Text == "" || txtCargo.Text == " ")
-            {
-                return false;
-            }
-            else if (txtCel.Text == "" || txtCel.Text == " ")
-            {
-                return false;
-            }
-            else if (txtCorreoCoo.Text == "" || txtCorreoCoo.Text == " ")
-            {
-                return false;
-            }
-            else if (txtObservacion.Text == "" || txtObservacion.Text == " ")
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        private void EnviarDatos(object sender, RoutedEventArgs e)
-        {
-            if (validarRegistros()) {
-                Puestos dataPuestos = new Puestos(txtCargo.Text, txtArea.Text, txtCel.Text, txtCorreoCoo.Text, "gmail.com", "img", txtObservacion.Text);
-                msjEnvioDatos.Content = dataPuestos.postPuestos();
-            }
-            else
+            if (txtCodter.Text == "")
             {
                 msjEnvioDatos.Content = "llene todos los campos";
-            }            
+            }
+            else
+            {
+                DateTime fechaCal = inputFecha.SelectedDate ?? DateTime.Today;
+                int intCodTer = int.Parse(txtCodter.Text);
+                retiros objRet = new retiros(intCodTer, fechaCal.ToString("yyyy-MM-dd"));
+                msjEnvioDatos.Content = objRet.postTblRetiros();
+                RetirosData.ItemsSource = objRet.getRetiros().Tables[0].DefaultView;
+            }
         }
 
+        //VALIDACION DE INPUT NUMERICO
         private bool IsNumeric(string text)
         {
             return int.TryParse(text, out _);
@@ -107,9 +68,14 @@ namespace WpfApp2
             }
         }
 
-        
-        
+        private void ButtonAdv_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog guardarArchivo = new SaveFileDialog();
+            guardarArchivo.FileName = "Auxilio Retiro al pastor" + ".pdf";
+            guardarArchivo.ShowDialog();
+        } 
     }
-   }
+}
+   
 
 

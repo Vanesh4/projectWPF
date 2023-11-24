@@ -16,8 +16,7 @@ namespace WpfApp2
         private string conexion = "Data Source=192.168.10.8,1433; Initial Catalog=app;Persist Security Info=True; User Id=Corpen01SQL; Password=Prueba*123";
         //private string conexion = "server=192.168.10.13;port=3306;user=Gordillov;password=Hola2020*;database=app";
         public DataSet crearConexion(String consulta)
-        {
-            //MessageBox.Show("hizo la CONSULTAAAAAAA");
+        {            
             DataSet ds = new DataSet();
             SqlConnection con1 = new SqlConnection(conexion);
             //MySqlConnection con1 = new MySqlConnection(conexion);
@@ -35,7 +34,7 @@ namespace WpfApp2
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error: " + ex.Message);                
             }
             finally
             {

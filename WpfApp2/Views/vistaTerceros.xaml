@@ -7,32 +7,63 @@
         mc:Ignorable="d"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Title="vistaTerceros" Height="450" Width="800">
+
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-        <Grid>
-            <!--<DataGrid  x:Name="listaTerceros" AutoGenerateColumns="True" Margin="0,60">           
-            </DataGrid>-->
-            <!--<Button Content="Retiros" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100" Height="40" FontSize="18" Click="TraerData" />-->
+        <Grid>       
+            <StackPanel>
+                <Button Content="->" HorizontalAlignment="Right" VerticalAlignment="Top" Width="Auto" Height="20" FontSize="14" Click="href"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Traer datos" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="40" FontSize="18" Click="Button_Click"/>
+                    <Label Name="msjError1" Content=""/>
+                </StackPanel>
 
-            
+                <DataGrid  x:Name="data" AutoGenerateColumns="True" Margin="10">
+                </DataGrid>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="40" />
-            </Grid.RowDefinitions>
 
-            <StackPanel Orientation="Horizontal" Grid.Row="1">
-                <Label Content="Cod Ter:" />
-                <TextBox x:Name="txtCodter" Width="200" Margin="0,0,0,10" PreviewTextInput="txt_PreviewTextInput"/>
-                <DatePicker Name="inputFecha" Width="200" DisplayDateStart="01/01/1950" SelectedDate="{x:Static sys:DateTime.Today}"/>
-                <Button Content="Enviar Datos" Margin="20,0,0,0" Width="200" FontSize="18" Click="EnviarData"/>
-                <Label Name="msjEnvioDatos" Content=""/>
+                <Label Content="Cargo a buscar:"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Name="CuadroDeTexto" Width="200" Height="30" Text="" TextAlignment="Center" HorizontalAlignment="Center" FontSize="17" VerticalContentAlignment="Center" />
+                    <Button Margin="10,0,0,0" Content="Por Cargo" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" FontSize="17" Click="filtrar" />
+                    <Label Name="msjError" Content=""/>
+                </StackPanel>
+
+                <DataGrid  x:Name="dataFiltrada" AutoGenerateColumns="True" Margin="10">
+                </DataGrid>
+
+                <StackPanel Margin="10,40,10,10" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="Ingresar un puesto" FontSize="20" Margin="0,0,0,20" />
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Label Content="Cargo:" />
+                        <TextBox x:Name="txtCargo" Width="200" Margin="0,0,0,10"/>
+                        <Label Content="Area:" />
+                        <ComboBox x:Name="txtArea" Width="140">
+                            <ComboBoxItem Content="Sistemas"/>
+                            <ComboBoxItem Content="Cartera"/>
+                            <ComboBoxItem Content="Creditos"/>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+
+                        <Label Content="Celular Coorporativo:" />
+                        <TextBox x:Name="txtCel" Width="200" Margin="0,0,0,10" PreviewTextInput="txt_PreviewTextInput"/>
+                        <Label Content="Correo Coorporativo:" />
+                        <TextBox x:Name="txtCorreoCoo" Width="200" Margin="0,0,0,10"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="observaciones:" />
+                        <TextBox x:Name="txtObservacion" Width="200" Margin="0,0,0,10"/>
+                    </StackPanel>
+
+
+                    <Button Content="Enviar Datos" Margin="20,0,20,0" Width="Auto" Height="40" FontSize="18" Click="EnviarDatos"/>
+                    <Label Name="msjEnvioDatos" Content=""/>
+                </StackPanel>
+
+
+
             </StackPanel>
-
-            <DataGrid  x:Name="RetirosData" AutoGenerateColumns="True" Margin="20" Grid.Row="0"></DataGrid>
-
-            
-
+        
         </Grid>
     </ScrollViewer>
 </Window>

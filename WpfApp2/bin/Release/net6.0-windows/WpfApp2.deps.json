@@ -9,6 +9,7 @@
       "WpfApp2/1.0.0": {
         "dependencies": {
           "MySql.Data": "8.2.0",
+          "Syncfusion.SfGrid.WPF": "23.2.5",
           "System.Data.SqlClient": "4.8.5"
         },
         "runtime": {
@@ -154,6 +155,46 @@
             "rid": "win-x86",
             "assetType": "native",
             "fileVersion": "4.6.25512.1"
+          }
+        }
+      },
+      "Syncfusion.Data.WPF/23.2.5": {
+        "runtime": {
+          "lib/net6.0-windows7.0/Syncfusion.Data.WPF.dll": {
+            "assemblyVersion": "23.2.5.0",
+            "fileVersion": "23.2.5.0"
+          }
+        }
+      },
+      "Syncfusion.Licensing/23.2.5": {
+        "runtime": {
+          "lib/net6.0/Syncfusion.Licensing.dll": {
+            "assemblyVersion": "23.2.5.0",
+            "fileVersion": "23.2.5.0"
+          }
+        }
+      },
+      "Syncfusion.SfGrid.WPF/23.2.5": {
+        "dependencies": {
+          "Syncfusion.Data.WPF": "23.2.5",
+          "Syncfusion.Licensing": "23.2.5",
+          "Syncfusion.Shared.WPF": "23.2.5"
+        },
+        "runtime": {
+          "lib/net6.0-windows7.0/Syncfusion.SfGrid.WPF.dll": {
+            "assemblyVersion": "23.2.5.0",
+            "fileVersion": "23.2.5.0"
+          }
+        }
+      },
+      "Syncfusion.Shared.WPF/23.2.5": {
+        "dependencies": {
+          "Syncfusion.Licensing": "23.2.5"
+        },
+        "runtime": {
+          "lib/net6.0-windows7.0/Syncfusion.Shared.WPF.dll": {
+            "assemblyVersion": "23.2.5.0",
+            "fileVersion": "23.2.5.0"
           }
         }
       },
@@ -437,6 +478,34 @@
       "sha512": "sha512-YhEdSQUsTx+C8m8Bw7ar5/VesXvCFMItyZF7G1AUY+OM0VPZUOeAVpJ4Wl6fydBGUYZxojTDR3I6Bj/+BPkJNA==",
       "path": "runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0",
       "hashPath": "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512"
+    },
+    "Syncfusion.Data.WPF/23.2.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-82P5ShZp82GwC+ObLSt0nCEJ3xdV4125ubud+k1IzcWjUqAvqxirxwzuByG/tT8dR8umkxd/X5EjS8jOnO/9Ig==",
+      "path": "syncfusion.data.wpf/23.2.5",
+      "hashPath": "syncfusion.data.wpf.23.2.5.nupkg.sha512"
+    },
+    "Syncfusion.Licensing/23.2.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0qOGTtIcqylHE+2Sen09u6+02ny51NK+auhilBtZ3iGZh/26sN+uE7xviYa66qcXjRRZY6KeXf8HVXQZRr4KrA==",
+      "path": "syncfusion.licensing/23.2.5",
+      "hashPath": "syncfusion.licensing.23.2.5.nupkg.sha512"
+    },
+    "Syncfusion.SfGrid.WPF/23.2.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-E96fIfYLXkc2IXwJVkZyLxnqjbo/86+bI6gEPmhNUhOtAIIM43kyp9r4RdXIqpOenbSxkvQQ9VHiu7n5qcovMQ==",
+      "path": "syncfusion.sfgrid.wpf/23.2.5",
+      "hashPath": "syncfusion.sfgrid.wpf.23.2.5.nupkg.sha512"
+    },
+    "Syncfusion.Shared.WPF/23.2.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gPJCDyZymZcUsKT1hqRvMYIEOtSrJhSLkUEvqSPz//6ZuGtQ1MXMIPs+DG+KcwAtVzTsB9m6eJz3bj0X6vXqYA==",
+      "path": "syncfusion.shared.wpf/23.2.5",
+      "hashPath": "syncfusion.shared.wpf.23.2.5.nupkg.sha512"
     },
     "System.Buffers/4.5.1": {
       "type": "package",
