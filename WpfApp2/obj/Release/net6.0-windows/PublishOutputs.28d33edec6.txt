@@ -9,6 +9,10 @@ C:\Users\Gordillov\Desktop\projSql\K4os.Compression.LZ4.dll
 C:\Users\Gordillov\Desktop\projSql\K4os.Compression.LZ4.Streams.dll
 C:\Users\Gordillov\Desktop\projSql\K4os.Hash.xxHash.dll
 C:\Users\Gordillov\Desktop\projSql\MySql.Data.dll
+C:\Users\Gordillov\Desktop\projSql\Syncfusion.Data.WPF.dll
+C:\Users\Gordillov\Desktop\projSql\Syncfusion.Licensing.dll
+C:\Users\Gordillov\Desktop\projSql\Syncfusion.SfGrid.WPF.dll
+C:\Users\Gordillov\Desktop\projSql\Syncfusion.Shared.WPF.dll
 C:\Users\Gordillov\Desktop\projSql\System.Data.SqlClient.dll
 C:\Users\Gordillov\Desktop\projSql\System.Diagnostics.DiagnosticSource.dll
 C:\Users\Gordillov\Desktop\projSql\System.IO.Pipelines.dll

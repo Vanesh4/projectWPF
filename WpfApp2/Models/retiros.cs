@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls.Primitives;
 
 namespace WpfApp2.Models
 {
@@ -388,13 +390,11 @@ namespace WpfApp2.Models
 
         //PLUS
         double divAnioDias = 365.0 / 12.0;
-        public int calculoPlus(int cod_ter, int anioCal, double liquidacion, int plusVal)
+        public (int calculo, double plus) calculoPlus(int cod_ter, DateTime fechaFin, double liquidacion, int plusVal)
         {
             conexionbd con = new conexionbd();
             DataTable tabla = con.crearConexion($"select fecha_para_calculo from BD$ where COD_TER = {cod_ter};").Tables[0];
-            object valorFecha = tabla.Rows[0]["fecha_para_calculo"];
-            DateTime fechaInicio = Convert.ToDateTime(valorFecha);
-            DateTime fechaFin = new DateTime(anioCal, 12, 31);
+            DateTime fechaInicio = Convert.ToDateTime(tabla.Rows[0]["fecha_para_calculo"]);           
 
             TimeSpan diferencia = fechaFin.Subtract(fechaInicio);
             int diferenciaEnDias = diferencia.Days;
@@ -408,8 +408,9 @@ namespace WpfApp2.Models
             double plus = (diferenciaEnDias / divAnioDias) * plusValor;
 
             int calculo = (int)Math.Ceiling(liquidacion) + (int)Math.Ceiling(plus);
-            //MessageBox.Show($"CODTER{cod_ter}\n PLUS {plus}\n Liquidacion {liquidacion} \nSuma Calculo {calculo}");
-            return calculo;
+            
+            //MessageBox.Show($"calculoPlussssssssss: CODTER{cod_ter}\n PLUS {plus}\n Liquidacion {liquidacion} \nSuma Calculo {calculo}");
+            return (calculo, plus);
         }
         public void anio2017()
         {
@@ -426,7 +427,7 @@ namespace WpfApp2.Models
                 if (r.anio < 2017)
                 {
                     double liquidacion = valorFijo;
-                    calculo = calculoPlus(cod_ter, 2017, liquidacion, 4891);
+                    calculo = calculoPlus(cod_ter, new DateTime(2017, 12, 31), liquidacion, 4891).calculo;
                 }
                 else if (r.anio == 2017)
                 {
@@ -434,7 +435,7 @@ namespace WpfApp2.Models
                     int difDia = 31 - r.dia;
 
                     double liquidacion = ((difMes * valorFijo) / 12) + (((difDia * valorFijo) / 12) / 30);
-                    calculo = calculoPlus(cod_ter, 2017, liquidacion, 4891);
+                    calculo = calculoPlus(cod_ter, new DateTime(2017, 12, 31), liquidacion, 4891).calculo;
                 }
                 con.conexionAltTabla($"UPDATE BD$ SET liquidacion_2017PLUS={calculo} WHERE COD_TER = {cod_ter};");
             }         
@@ -456,7 +457,7 @@ namespace WpfApp2.Models
                 if (r.anio < 2018)
                 {
                      double liq2018 = valorFijo;
-                     calculo = calculoPlus(cod_ter, 2018,liq2018, 4898);
+                     calculo = calculoPlus(cod_ter, new DateTime(2018, 12, 31),liq2018, 4898).calculo;
                 }
                 else if (r.anio == 2018)
                 {
@@ -464,7 +465,7 @@ namespace WpfApp2.Models
                     int difDia = 31 - r.dia;
 
                     double liq2018 = ((difMes * valorFijo) / 12) + (((difDia * valorFijo) / 12) / 30);
-                    calculo = calculoPlus(cod_ter, 2018, liq2018, 4898);
+                    calculo = calculoPlus(cod_ter, new DateTime(2018, 12, 31), liq2018, 4898).calculo;
                 }
                 
                 con.conexionAltTabla($"UPDATE BD$ SET liquidacion_2018PLUS={calculo} WHERE COD_TER = {cod_ter};");
@@ -485,7 +486,7 @@ namespace WpfApp2.Models
                 if (r.anio < 2019)
                 {
                     double liquidacion = valorFijo;
-                    calculo = calculoPlus(cod_ter, 2019, liquidacion, 4997);
+                    calculo = calculoPlus(cod_ter, new DateTime(2019, 12, 31), liquidacion, 4997).calculo;
                 }
                 else if (r.anio == 2019)
                 {
@@ -493,7 +494,7 @@ namespace WpfApp2.Models
                     int difDia = 31 - r.dia;
 
                     double liquidacion = ((difMes * valorFijo) / 12) + (((difDia * valorFijo) / 12) / 30);
-                    calculo = calculoPlus(cod_ter, 2019, liquidacion, 4997);
+                    calculo = calculoPlus(cod_ter, new DateTime(2019, 12, 31), liquidacion, 4997).calculo;
                 }
 
                 con.conexionAltTabla($"UPDATE BD$ SET liquidacion_2019PLUS={calculo} WHERE COD_TER = {cod_ter};");
@@ -514,7 +515,7 @@ namespace WpfApp2.Models
                 if (r.anio < 2020)
                 {
                     double liquidacion = valorFijo;
-                    calculo = calculoPlus(cod_ter, 2020, liquidacion, 4601);
+                    calculo = calculoPlus(cod_ter, new DateTime(2020, 12, 31), liquidacion, 4601).calculo;
                 }
                 else if (r.anio == 2020)
                 {
@@ -522,7 +523,7 @@ namespace WpfApp2.Models
                     int difDia = 31 - r.dia;
 
                     double liquidacion = ((difMes * valorFijo) / 12) + (((difDia * valorFijo) / 12) / 30);
-                    calculo = calculoPlus(cod_ter, 2020, liquidacion, 4601);
+                    calculo = calculoPlus(cod_ter, new DateTime(2020, 12, 31), liquidacion, 4601).calculo;
                 }
 
                 con.conexionAltTabla($"UPDATE BD$ SET liquidacion_2020PLUS={calculo} WHERE COD_TER = {cod_ter};");
@@ -543,7 +544,7 @@ namespace WpfApp2.Models
                 if (r.anio < 2021)
                 {
                     double liquidacion = valorFijo;
-                    calculo = calculoPlus(cod_ter, 2021, liquidacion, 5531);
+                    calculo = calculoPlus(cod_ter, new DateTime(2021, 12, 31), liquidacion, 5531).calculo;
                 }
                 else if (r.anio == 2021)
                 {
@@ -551,7 +552,7 @@ namespace WpfApp2.Models
                     int difDia = 31 - r.dia;
 
                     double liquidacion = ((difMes * valorFijo) / 12) + (((difDia * valorFijo) / 12) / 30);
-                    calculo = calculoPlus(cod_ter, 2021, liquidacion, 5531);
+                    calculo = calculoPlus(cod_ter, new DateTime(2021, 12, 31), liquidacion, 5531).calculo;
                 }
 
                 con.conexionAltTabla($"UPDATE BD$ SET liquidacion_2021PLUS={calculo} WHERE COD_TER = {cod_ter};");
@@ -572,7 +573,7 @@ namespace WpfApp2.Models
                 if (r.anio < 2022)
                 {
                     double liquidacion = valorFijo;
-                    calculo = calculoPlus(cod_ter, 2022, liquidacion, 7209);
+                    calculo = calculoPlus(cod_ter, new DateTime(2022, 12, 31), liquidacion, 7209).calculo;
                 }
                 else if (r.anio == 2022)
                 {
@@ -580,39 +581,55 @@ namespace WpfApp2.Models
                     int difDia = 31 - r.dia;
 
                     double liquidacion = ((difMes * valorFijo) / 12) + (((difDia * valorFijo) / 12) / 30);
-                    calculo = calculoPlus(cod_ter, 2022, liquidacion, 7209);
+                    calculo = calculoPlus(cod_ter, new DateTime(2022, 12, 31), liquidacion, 7209).calculo;
                 }
 
                 con.conexionAltTabla($"UPDATE BD$ SET liquidacion_2022PLUS={calculo} WHERE COD_TER = {cod_ter};");
             }
         }
+        
         public void anio2023()
         {
             conexionbd con = new conexionbd();
-            con.conexionAltTabla(agregarColumna("2023PLUS"));
+            //con.conexionAltTabla(agregarColumna("2023PLUS"));
 
-            DataSet res = con.crearConexion("SELECT COD_TER FROM BD$ where liquidacion_2023PLUS iS NULL;");
+            //DataSet res = con.crearConexion("SELECT COD_TER FROM BD$ where liquidacion_2023PLUS iS NULL;");
+            DataSet res = con.crearConexion("SELECT COD_TER FROM BD$ where fecha_para_calculo = '2010-12-31';");
             foreach (DataRow i in res.Tables[0].Rows)
             {
                 int cod_ter = Convert.ToInt32(i["COD_TER"]);
                 var r = retAnioMesDia(cod_ter);
-                int valorFijo = 3243572;
+                double valorFijo = 3243572.0;
                 double calculo = 0;
-                if (r.anio < 2023)
+                double liquidacion = 0;
+                if (DateTime.Now.Year == 2023)
                 {
-                    double liquidacion = valorFijo;
-                    calculo = calculoPlus(cod_ter, 2023, liquidacion, 7209);
+                    int difMes = DateTime.Now.Month -1 ;
+                    int difDia = DateTime.Now.Day;
+                    
+                    liquidacion = ((difMes * valorFijo) / 12) + ((difDia * valorFijo) / 12) / 30;
+                    
+                    double cal1 = calculoPlus(cod_ter, DateTime.Now, (int)Math.Ceiling(liquidacion), 7209).plus / 365.0;
+                    double cal2 = DateTime.Now.Month * 30.0 + DateTime.Now.Day;
+                    double plus = cal1 * cal2;
+                    calculo = (int)Math.Ceiling(liquidacion) + plus;
+                    MessageBox.Show($"cal1{cal1}\ncal2{cal2}\nplus{plus}");
+                }
+                else if (r.anio < 2023)
+                {
+                    liquidacion = valorFijo;
+                    //calculo = calculoPlus(cod_ter, 2023, liquidacion, 7209);
                 }
                 else if (r.anio == 2023)
                 {
                     int difMes = 12 - r.mes;
                     int difDia = 31 - r.dia;
 
-                    double liquidacion = ((difMes * valorFijo) / 12) + (((difDia * valorFijo) / 12) / 30);
-                    calculo = calculoPlus(cod_ter, 2023, liquidacion, 7209);
+                    liquidacion = ((difMes * valorFijo) / 12) + (((difDia * valorFijo) / 12) / 30);
+                    calculo = calculoPlus(cod_ter, new DateTime(2023, 12, 31), liquidacion, 7209).calculo;
                 }
-
-                con.conexionAltTabla($"UPDATE BD$ SET liquidacion_2023PLUS={calculo} WHERE COD_TER = {cod_ter};");
+                //MessageBox.Show($"cod_ter:{cod_ter}\nliquidacion:{(int)Math.Ceiling(liquidacion)}\nCALCULOOOOOOO:{calculo}");
+                //con.conexionAltTabla($"UPDATE BD$ SET liquidacion_2023PLUS={calculo} WHERE COD_TER = {cod_ter};");
             }
         }
     }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.Win32;
+using Syncfusion.Data;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,11 +11,11 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp2.Models;
+
 
 namespace WpfApp2
 {
@@ -29,13 +31,9 @@ namespace WpfApp2
             //listaTerceros.ItemsSource = dataTer.getTerceros().Tables[0].DefaultView;
 
             retiros dataTer = new retiros();
-
-            dataTer.anio2020();
-            dataTer.anio2021();
-            dataTer.anio2022();
+            dataPager.Source = RetirosData.View;
             RetirosData.ItemsSource = dataTer.getRetiros().Tables[0].DefaultView;
-
-            dataPager.Source = (System.Collections.IEnumerable)RetirosData.ItemsSource;
+            dataTer.anio2023();
         }
 
         private void EnviarData(object sender, RoutedEventArgs e)
