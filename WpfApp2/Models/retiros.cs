@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls.Primitives;
 
 namespace WpfApp2.Models
 {
@@ -131,7 +124,8 @@ namespace WpfApp2.Models
                 {
                     calculo = valorFijo;
                 }
-                else if (r.anio == 2007) {
+                else if (r.anio == 2007)
+                {
 
                     int difMes = 12 - r.mes;
                     int difDia = 31 - r.dia;
@@ -394,7 +388,7 @@ namespace WpfApp2.Models
         {
             conexionbd con = new conexionbd();
             DataTable tabla = con.crearConexion($"select fecha_para_calculo from BD$ where COD_TER = {cod_ter};").Tables[0];
-            DateTime fechaInicio = Convert.ToDateTime(tabla.Rows[0]["fecha_para_calculo"]);           
+            DateTime fechaInicio = Convert.ToDateTime(tabla.Rows[0]["fecha_para_calculo"]);
 
             TimeSpan diferencia = fechaFin.Subtract(fechaInicio);
             int diferenciaEnDias = diferencia.Days;
@@ -408,7 +402,7 @@ namespace WpfApp2.Models
             double plus = (diferenciaEnDias / divAnioDias) * plusValor;
 
             int calculo = (int)Math.Ceiling(liquidacion) + (int)Math.Ceiling(plus);
-            
+
             //MessageBox.Show($"calculoPlussssssssss: CODTER{cod_ter}\n PLUS {plus}\n Liquidacion {liquidacion} \nSuma Calculo {calculo}");
             return (calculo, plus);
         }
@@ -438,9 +432,9 @@ namespace WpfApp2.Models
                     calculo = calculoPlus(cod_ter, new DateTime(2017, 12, 31), liquidacion, 4891).calculo;
                 }
                 con.conexionAltTabla($"UPDATE BD$ SET liquidacion_2017PLUS={calculo} WHERE COD_TER = {cod_ter};");
-            }         
+            }
 
-        }        
+        }
 
         public void anio2018()
         {
@@ -452,12 +446,12 @@ namespace WpfApp2.Models
             {
                 int cod_ter = Convert.ToInt32(i["COD_TER"]);
                 var r = retAnioMesDia(cod_ter);
-                int valorFijo = 2064174;                
+                int valorFijo = 2064174;
                 double calculo = 0;
                 if (r.anio < 2018)
                 {
-                     double liq2018 = valorFijo;
-                     calculo = calculoPlus(cod_ter, new DateTime(2018, 12, 31),liq2018, 4898).calculo;
+                    double liq2018 = valorFijo;
+                    calculo = calculoPlus(cod_ter, new DateTime(2018, 12, 31), liq2018, 4898).calculo;
                 }
                 else if (r.anio == 2018)
                 {
@@ -467,7 +461,7 @@ namespace WpfApp2.Models
                     double liq2018 = ((difMes * valorFijo) / 12) + (((difDia * valorFijo) / 12) / 30);
                     calculo = calculoPlus(cod_ter, new DateTime(2018, 12, 31), liq2018, 4898).calculo;
                 }
-                
+
                 con.conexionAltTabla($"UPDATE BD$ SET liquidacion_2018PLUS={calculo} WHERE COD_TER = {cod_ter};");
             }
         }
@@ -587,7 +581,7 @@ namespace WpfApp2.Models
                 con.conexionAltTabla($"UPDATE BD$ SET liquidacion_2022PLUS={calculo} WHERE COD_TER = {cod_ter};");
             }
         }
-        
+
         public void anio2023()
         {
             conexionbd con = new conexionbd();
@@ -604,12 +598,15 @@ namespace WpfApp2.Models
                 double liquidacion = 0;
                 if (DateTime.Now.Year == 2023)
                 {
-                    int difMes = DateTime.Now.Month -1 ;
+                    int difMes = DateTime.Now.Month - 1;
                     int difDia = DateTime.Now.Day;
-                    
+
                     liquidacion = ((difMes * valorFijo) / 12) + ((difDia * valorFijo) / 12) / 30;
-                    
+
                     double cal1 = calculoPlus(cod_ter, DateTime.Now, (int)Math.Ceiling(liquidacion), 7209).plus / 365.0;
+                    MessageBox.Show($"calculo {calculoPlus(cod_ter, DateTime.Now, (int)Math.Ceiling(liquidacion), 7209).plus}");
+                    MessageBox.Show($"/365\n{calculoPlus(cod_ter, DateTime.Now, (int)Math.Ceiling(liquidacion), 7209).plus / 365}");
+
                     double cal2 = DateTime.Now.Month * 30.0 + DateTime.Now.Day;
                     double plus = cal1 * cal2;
                     calculo = (int)Math.Ceiling(liquidacion) + plus;
